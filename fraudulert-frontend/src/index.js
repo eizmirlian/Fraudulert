@@ -12,9 +12,9 @@ const Stack = createNativeStackNavigator();
 
 const Router = () => (
   <NavigationContainer>
-  <Stack.Navigator initialRouteName="Charges">
+  <Stack.Navigator initialRouteName="App">
     <Stack.Screen name="Charges" component={FlaggedCharges} />
-    <Stack.Screen name="Chat" component={App} initialParams={{transID : -1}}/>
+    <Stack.Screen name="App" component={App} initialParams={{transID : -1}}/>
   </Stack.Navigator>
 </NavigationContainer>
 )

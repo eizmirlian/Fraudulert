@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Welcome from './Welcome';
 
-const App = () => {
+const App = ( {navigation} ) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleProceed = () => {
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div>
       {loggedIn ? (
-        <h1>Successfully Logged In!</h1>
+        navigation.push('Charges')
       ) : (
         <Welcome onProceed={handleProceed} />
       )}
