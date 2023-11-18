@@ -5,7 +5,7 @@ const Welcome = ({ onProceed }) => {
   const [password, setPassword] = useState('');
 
   const handleProceed = () => {
-    // Check if the username and password match (you can add your validation logic here)
+    // Check if the username and password match
     if (username === 'nate' && password === '1234') {
       onProceed();
     } else {
@@ -52,14 +52,14 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh', // Full height of the viewport
-        width: '100vw', // Full width of the viewport
-        backgroundColor: '#333', // Dark grey background color (fallback color)
-        color: '#fff', // Text color
+        height: '100vh', 
+        width: '100vw', 
+        backgroundColor: '#333', 
+        color: '#fff', 
         padding: '20px',
         borderRadius: '8px',
-        backgroundImage: 'url("/backgroundimg.jpeg")', // Add the path to your image
-        backgroundSize: 'cover', // Adjusts the size of the background image
+        backgroundImage: 'url("/backgroundimg.jpeg")', 
+        backgroundSize: 'cover', 
     },
     title: {
       fontSize: `${100}px`, 
