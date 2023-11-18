@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 
-const Welcome = ({ onProceed }) => {
+const Welcome = ({ onProceed , Navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleProceed = () => {
-    // Check if the username and password match
-    if (username === 'nate' && password === '1234') {
-      onProceed();
-    } else {
-      alert('Invalid username or password');
+  const [data, setData] = useState('')
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/data/' + username + "/" + password);
+      var data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.error(error);
     }
   };
+  const handleProceed = () => {
+    // Check if the username and password match
+    fetchData();
+    if (data.length > 0) {
+      Navigation.goBack();
+    }
+  };
+
 
   return (
     <div style={styles.container}>
