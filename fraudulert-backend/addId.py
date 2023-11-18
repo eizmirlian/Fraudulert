@@ -10,4 +10,3 @@ for index, line in df.iterrows():
         id += 1
     df.at[index, "id"] = dict[curr]
 df.to_csv("updated_credit.csv")
-    
