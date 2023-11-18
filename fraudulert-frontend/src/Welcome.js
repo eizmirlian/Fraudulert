@@ -6,19 +6,20 @@ const Welcome = ({ onProceed , Navigation}) => {
   const [data, setData] = useState('')
   const fetchData = async () => {
     try {
-      const response = await fetch('/api/data/' + username + "/" + password);
-      var data = await response.json();
-      setData(data);
+      const response = await fetch('/api/data/' + username + '/' + password);
+      console.log(response);
+      const data = await response.json();
+      if (data.success) {
+        Navigation.push('Charges');
+      }
     } catch (error) {
       console.error(error);
     }
   };
+
   const handleProceed = () => {
     // Check if the username and password match
     fetchData();
-    if (data.length > 0) {
-      Navigation.goBack();
-    }
   };
 
 
