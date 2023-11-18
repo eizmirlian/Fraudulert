@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 
-const Welcome = ({ onProceed , Navigation}) => {
+const Welcome = ({ navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState('')
   const fetchData = async () => {
     try {
-      const response = await fetch('/api/data/' + username + "/" + password);
-      var data = await response.json();
-      setData(data);
+      const response = await fetch('http://localhost:3001/api/data/' + username + '/' + password);
+      const data = await response.json();
+      console.log(data);
+      if (data.success) {
+        navigation.push('Charges');
+      }
     } catch (error) {
       console.error(error);
     }
   };
+
   const handleProceed = () => {
     // Check if the username and password match
     fetchData();
-    if (data.length > 0) {
-      Navigation.goBack();
-    }
   };
 
 

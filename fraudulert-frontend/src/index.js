@@ -7,6 +7,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { FlaggedCharges } from './FlaggedCharges';
+import Welcome from './Welcome';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,7 @@ const Router = () => (
   <NavigationContainer>
   <Stack.Navigator initialRouteName="App">
     <Stack.Screen name="Charges" component={FlaggedCharges} />
-    <Stack.Screen name="App" component={App} initialParams={{transID : -1}}/>
+    <Stack.Screen name="App" component={Welcome} initialParams={{transID : -1}}/>
   </Stack.Navigator>
 </NavigationContainer>
 )
