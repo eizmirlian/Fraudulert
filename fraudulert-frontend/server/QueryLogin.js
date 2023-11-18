@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3001;
+const cors = require('cors'); // Import the cors module
+
+// Enable CORS for all routes
+app.use(cors());
 
 mongoose.connect('mongodb://localhost/FraudulertDB');
 const db = mongoose.connection;
