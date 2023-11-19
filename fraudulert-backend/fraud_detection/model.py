@@ -22,3 +22,17 @@ class fraud_classifier(nn.Module):
     def init_hidden(self):
         return (torch.zeros(self.num_layers, self.batch_size, self.hidden_size),
                 torch.zeros(self.num_layers, self.batch_size, self.hidden_size))
+    
+    
+    def forward(self, input):
+        init_out = self.init_linear(input)
+
+        lstm_out, self.hidden = self.lstm_layers(init_out)
+
+        act_out = self.tanh_act(lstm_out)
+
+        lin_out = self.linear(act_out)
+
+        y_pred = self.linear_out(lin_out)
+
+        return y_pred
