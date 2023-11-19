@@ -38,7 +38,7 @@ app.get('/api/data/:username/:password', async (req, res) => {
 app.get('api/gpt', async (req, res) => {
   try {
     console.log("connected");
-    const { transaction , causes } = req.params;
+    const { transaction } = req.params;
     const api_key = "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";
     const openAIResponse = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
       method: 'POST',
@@ -47,7 +47,7 @@ app.get('api/gpt', async (req, res) => {
         Authorization: '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',
       },
       body: JSON.stringify({
-        prompt: "When running a fraudulent transaction detector on this transaction: " + transaction + ", the detector displayed that the transaction was most likely fraudulent" + "for the following reasons: " + causes + "Why would those causes lead to a detector flagging this transaction as fraudulent? (Keep explanations to two sentences per category and don't use the acronym names, use real names)",
+        prompt: "When running a fraudulent transaction detector on this transaction: " + transaction + ", the detector displayed that the transaction was most likely fraudulent for the three reasons listed in the json (causes: ...). Why would those causes lead to a detector flagging this transaction as fraudulent? (Keep explanations to two sentences per category and don't use the acronym names, use real names)",
         max_tokens: 100,
       }),
     });

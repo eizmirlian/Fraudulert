@@ -9,13 +9,15 @@ import reportWebVitals from './reportWebVitals';
 import { FlaggedCharges } from './FlaggedCharges';
 import Welcome from './Welcome';
 
+
 const Stack = createNativeStackNavigator();
 
 const Router = () => (
   <NavigationContainer>
   <Stack.Navigator initialRouteName="App">
     <Stack.Screen name="Charges" component={FlaggedCharges} />
-    <Stack.Screen name="App" component={Welcome} initialParams={{transID : -1}}/>
+    <Stack.Screen name="App" component={Welcome}/>
+    <Stack.Screen name="Chat" component={Chat} initialParams={{transID}}/>
   </Stack.Navigator>
 </NavigationContainer>
 )
