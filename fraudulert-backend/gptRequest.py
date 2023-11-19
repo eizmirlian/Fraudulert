@@ -1,5 +1,5 @@
 import openai
-api_key = "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"
+api_key = ""
 openai.api_key = api_key
 def getFraudExplanation(transaction, causes):
     prompt = ""
