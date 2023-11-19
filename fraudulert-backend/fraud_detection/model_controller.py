@@ -27,7 +27,7 @@ while moreData:
                 X_discrete = X_discrete[['merchant', 'category', 'citystate']]
                 #print(X_discrete)
                 X_enc = enc.fit_transform(X_discrete)
-                newDF = pd.DataFrame({'merchant' : X_enc[:, 0], 'category' : X_enc[:, 1], 'city' : X_enc[:, 2]})
+                newDF = pd.DataFrame({'Merchant' : X_enc[:, 0], 'Category' : X_enc[:, 1], 'City' : X_enc[:, 2]})
                 #print(newDF)
                 X_dates = seriesTrans['trans_date_trans_time']
                 prevDate = None
@@ -63,7 +63,7 @@ while moreData:
         UserID += 1
 print(decomposedDataset)
 
-
+decomposedDataset.groupby()
 train_loader = data.DataLoader(data.TensorDataset(decomposedDataset))
 
 
