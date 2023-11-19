@@ -1,5 +1,5 @@
 import openai
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 def getFraudExplanation(transaction, causes):
     prompt = ""
@@ -13,7 +13,7 @@ def getFraudExplanation(transaction, causes):
             prompt += ", "
         else:
             prompt += ". "
-    prompt += "Why would those causes lead to a detector flagging this transaction as fraudulent?"
+    prompt += "Why would those causes lead to a detector flagging this transaction as fraudulent? (Keep explanations to two sentences per category and don't use the acronym names, use real names)"
     messages = [{'role': 'user', 'content': prompt}]
     response = openai.ChatCompletion.create(model='gpt-3.5-turbo', messages= messages, temperature= 0,)
     score = response['choices'][0]['message']['content']
