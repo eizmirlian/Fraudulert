@@ -9,7 +9,7 @@ const Welcome = ({ navigation}) => {
       const data = await response.json();
       console.log(data);
       if (data.success) {
-        navigation.push('Charges');
+        navigation.push('Charges', {transID: '-1'});
       }
     } catch (error) {
       console.error(error);

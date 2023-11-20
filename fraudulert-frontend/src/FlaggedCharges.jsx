@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import transactionData from './flaggedTransactions.json'
 import {
     BrowserRouter as Router,
@@ -21,31 +21,40 @@ import { FlatList } from 'react-native';
 
 
 
-export function FlaggedCharges( {navigation} ) {
-    console.log(transactionData);
+export function FlaggedCharges( {route, navigation} ) {
+
     const flaggedTransactions = Object.keys(transactionData).map((key) => ({
         id: key,
         text: JSON.stringify(transactionData[key], null, 2),
       }));
-    const [data, setData] = useState(flaggedTransactions);
-    const [flaggedState, setFlaggedState] = useState(flaggedTransactions)
+    console.log(flaggedTransactions);
     const handleClick = (id) => {
         console.log(id)
         //removeElement(id)
         navigation.push('Chat', {transId : id})
+        
     };
-
+    const id = route.params['transId'];
+    const [data, setData] = useState(flaggedTransactions);
+    const [flaggedState, setFlaggedState] = useState(flaggedTransactions)
+    useEffect(() => {
+        if (id != '-1') {
+            removeElement(id);
+        }
+    }, [])
+   
     const addElement = (newID, element) => {
-        var newArray = [...data , {id : newID, text: element }];
-        setData(newArray)
-        setFlaggedState(data)
-    };
+    var newArray = [...data , {id : newID, text: element }];
+    setData(newArray)
+    setFlaggedState(data)
+};
 
-    const removeElement = (confirmedID) => {
-        var toRemove = data.findIndex(element => element.id == confirmedID)
-        var newState = data.toSpliced(toRemove)
-        setFlaggedState(newState)
-    };
+const removeElement = (confirmedID) => {
+    var toRemove = data.findIndex(element => element.id == confirmedID)
+    var newState = data.toSpliced(toRemove)
+    setFlaggedState(newState)
+};
+    
 
     return (
         <View>
@@ -75,4 +84,3 @@ const styles = {
         fontSize: `${30}px` 
     },
 };
-

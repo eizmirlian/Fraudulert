@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import transactionData from './flaggedTransactions.json'
+import removeId from './FlaggedCharges.jsx'
 
-function Chat() {
-  const [transaction, setTransaction] = useState('');
+function Chat({route, navigation}) {
   const [result, setResult] = useState('');
+  const id = route.params['transId'];
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
-        const response = await fetch('https://localhost:3001/api/gpt', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            transaction,
-          }),
+        const response = await fetch('http://localhost:3001/api/gpt/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                transaction: transactionData[id],
+            }),
         });
-
         const responseData = await response.json();
-
         setResult(responseData.result);
       } catch (error) {
         console.error(error);
@@ -31,11 +32,13 @@ function Chat() {
   const handleYesClick = () => {
     // Handle "Yes" button click if needed
     console.log('User indicated they made the purchase');
+    navigation.popBackStack('Charges', {transId : id})
   };
 
   const handleNoClick = () => {
     // Handle "No" button click if needed
     console.log('User indicated they did not make the purchase');
+    navigation.popBackStack('Charges', {transId : '-1'})
   };
 
   return (

@@ -8,6 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { FlaggedCharges } from './FlaggedCharges';
 import Welcome from './Welcome';
+import Chat from './Chat'
 
 
 const Stack = createNativeStackNavigator();
@@ -15,9 +16,9 @@ const Stack = createNativeStackNavigator();
 const Router = () => (
   <NavigationContainer>
   <Stack.Navigator initialRouteName="App">
-    <Stack.Screen name="Charges" component={FlaggedCharges} />
+    <Stack.Screen name="Charges" component={FlaggedCharges} initialParams={{}} />
     <Stack.Screen name="App" component={Welcome}/>
-    <Stack.Screen name="Chat" component={Chat} initialParams={{transID}}/>
+    <Stack.Screen name="Chat" component={Chat} initialParams={{}}/>
   </Stack.Navigator>
 </NavigationContainer>
 )
